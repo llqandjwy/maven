@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.bdqn.mapper.UserMapper">
+    <resultMap id="userMap" type="user">
+        <id column="l_id" property="lid"></id>
+        <result column="l_name" property="lname"></result>
+        <result column="l_password" property="lpassword"></result>
+        <association property="classInfo" javaType="classInfo" column="c_id"
+                     >
+            <id column="c_id" property="cid"></id>
+            <result column="c_name" property="cname"></result>
+        </association>
+    </resultMap>
+    <select id="login" resultType="int">
+        select count(1) from l_user where l_name=#{name} and l_password=#{password}
+    </select>
+    <select id="selects" resultMap="userMap">
+        select * from L_USER t join classinfo c on t.c_id=c.c_id
+    </select>
+    <insert id="insert" parameterType="user">
+        insert into l_user values(#{lid},#{lname},#{lpassword},1)
+    </insert>
+</mapper>
