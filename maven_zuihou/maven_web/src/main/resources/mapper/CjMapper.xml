@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.accp.mapper.CjMapper">
+    <resultMap id="cjMap" type="Cj">
+        <result column="cj" property="cj"/>
+        <association property="student" column="s_id">
+            <id column="s_id" property="lid"/>
+            <result column="s_name" property="lname"/>
+            <result column="s_password" property="lpassword"/>
+            <collection property="cjs" ofType="cj" resultMap="com.accp.mapper.CjMapper.cjMap">
+
+            </collection>
+        </association>
+        <association property="ke" column="k_id" resultMap="com.accp.mapper.KeMapper.keMap">
+
+        </association>
+    </resultMap>
+
+</mapper>

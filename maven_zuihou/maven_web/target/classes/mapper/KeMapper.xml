@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.accp.mapper.KeMapper">
+    <resultMap id="keMap" type="cj">
+        <id column="k_id" property="kid"/>
+        <result column="k_name" property="kname"/>
+        <collection property="cjs" ofType="cj" resultMap="com.accp.mapper.CjMapper.cjMap">
+
+        </collection>
+    </resultMap>
+
+</mapper>
